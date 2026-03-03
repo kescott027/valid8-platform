@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunRequest",
+  "type": "object",
+  "properties": {
+    "runId": {
+      "type": "string"
+    },
+    "jobId": {
+      "type": "string"
+    },
+    "pipeline": {
+      "type": "object"
+    },
+    "input": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "runId",
+    "jobId",
+    "pipeline",
+    "input"
+  ]
+}

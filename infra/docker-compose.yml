@@ -1,0 +1,20 @@
+services:
+  control-plane:
+    build:
+      context: ../apps/control-plane
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../data:/app/data
+    environment:
+      - DATA_DIR=/app/data
+
+  worker:
+    build:
+      context: ../apps/worker
+    volumes:
+      - ../data:/app/data
+    environment:
+      - DATA_DIR=/app/data
+    depends_on:
+      - control-plane

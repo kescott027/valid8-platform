@@ -1,0 +1,47 @@
+minimum_pre_commit_version: "3.6.0"
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-json
+      - id: detect-private-key
+      - id: mixed-line-ending
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.4
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+
+  - repo: local
+    hooks:
+      - id: control-plane-lint
+        name: control-plane lint
+        entry: bash -lc 'cd apps/control-plane && npm run lint'
+        language: system
+        pass_filenames: false
+
+      - id: worker-lint
+        name: worker lint
+        entry: bash -lc 'cd apps/worker && uv run ruff check .'
+        language: system
+        pass_filenames: false
+
+      - id: full-test-suite
+        name: full test suite
+        entry: bash -lc 'make test'
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: full-security-suite
+        name: full security suite
+        entry: bash -lc 'make security'
+        language: system
+        pass_filenames: false
+        stages: [pre-push]

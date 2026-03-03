@@ -1,0 +1,140 @@
+openapi: 3.0.3
+info:
+  title: hyperdev-scaffold control-plane API
+  version: 0.1.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                required: [ok]
+  /pipelines:
+    post:
+      summary: Create a pipeline
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelineCreate"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pipeline"
+  /jobs:
+    post:
+      summary: Submit a job
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/JobCreate"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+  /runs/{runId}:
+    get:
+      summary: Get a run
+      parameters:
+        - in: path
+          name: runId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Run"
+components:
+  schemas:
+    Step:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [shell]
+        cmd:
+          type: array
+          items:
+            type: string
+      required: [type, cmd]
+    PipelineCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        steps:
+          type: array
+          items:
+            $ref: "#/components/schemas/Step"
+      required: [name, steps]
+    Pipeline:
+      allOf:
+        - $ref: "#/components/schemas/PipelineCreate"
+        - type: object
+          properties:
+            id:
+              type: string
+          required: [id]
+    JobCreate:
+      type: object
+      properties:
+        pipelineId:
+          type: string
+        input:
+          type: object
+          additionalProperties: true
+      required: [pipelineId, input]
+    Job:
+      allOf:
+        - $ref: "#/components/schemas/JobCreate"
+        - type: object
+          properties:
+            id:
+              type: string
+            runId:
+              type: string
+          required: [id, runId]
+    Run:
+      type: object
+      properties:
+        id:
+          type: string
+        jobId:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, succeeded, failed]
+        startedAt:
+          type: string
+          nullable: true
+        finishedAt:
+          type: string
+          nullable: true
+        logs:
+          type: array
+          items:
+            type: string
+      required: [id, jobId, status, logs]
