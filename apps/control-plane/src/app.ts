@@ -18,7 +18,7 @@ const PipelineCreateSchema = z.object({
 
 const JobCreateSchema = z.object({
   pipelineId: z.string().min(1),
-  input: z.record(z.unknown())
+  input: z.record(z.string(), z.unknown())
 });
 
 export type AppDeps = {
