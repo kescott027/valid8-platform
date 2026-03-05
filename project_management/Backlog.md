@@ -5,8 +5,8 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 ## Backlog Index
 
 - Last updated: 2026-03-05
-- Total story count: 34
-- Highest story ID present: ST-0034
+- Total story count: 38
+- Highest story ID present: ST-0038
 
 ## Story Template (Must Be Used)
 
@@ -227,6 +227,86 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 - **Risk:** Low
 - **Architectural Impact:** None
 - **Notes/Evidence:** Pending
+
+### Story 35
+- **ID:** ST-0035
+- **Title:** Pre-Sprint Technical Debt Check Gate
+- **Description:** Implement and enforce a technical debt preflight gate that must be completed before sprint activation.
+- **Context:** Sprint progression currently depends on manual checks and can advance before debt and failure triage are documented.
+- **User Value:** Reduces avoidable carry-over risk and keeps sprint starts deterministic and auditable.
+- **Non-functional Requirements:** Repeatability, auditability, and policy compliance.
+- **Implementation Notes:** Add debt-check procedure and report template under `project_management/`, and wire gate rules to sprint update flow.
+- **Test Plan:** Add governance checks that fail when sprint changes occur without a same-day debt preflight artifact.
+- **Observability:** Debt check output should include timestamp, owners, severities, and links to remediation artifacts.
+- **Rollback Plan:** Revert gate enforcement and retain report history if false positives block progress.
+- **Acceptance Criteria:**
+  - A documented debt-check checklist exists and is required before changing to a new sprint.
+  - Debt findings include owner + target sprint for remediation.
+  - Audit log includes debt-check entries for each sprint start.
+- **Dependencies:** ST-0010
+- **Risk:** Medium
+- **Architectural Impact:** Medium
+- **Notes/Evidence:** Added after Sprint-001 PR hygiene/failed-check audit on 2026-03-05.
+
+### Story 36
+- **ID:** ST-0036
+- **Title:** PR Hygiene and Superseded Branch Cleanup Automation
+- **Description:** Add repeatable process and helper automation to close superseded PRs, delete stale branches, and summarize active failures.
+- **Context:** Sprint-generated PR volume can leave stale/duplicate PRs that obscure active work.
+- **User Value:** Keeps delivery signal clean and reduces triage overhead.
+- **Non-functional Requirements:** Safety, traceability, and non-destructive defaults.
+- **Implementation Notes:** Provide scripted PR queue audit with optional close/delete actions and required comment templates.
+- **Test Plan:** Validate script output against mock/open PR states and verify generated action plan.
+- **Observability:** Produce a PR hygiene report with open/closed/failed counts and links.
+- **Rollback Plan:** Disable auto-actions and run in report-only mode.
+- **Acceptance Criteria:**
+  - PR audit command lists open PRs with check status and age.
+  - Superseded PRs can be closed in bulk with standardized rationale comments.
+  - Branch cleanup can be executed safely after PR closure.
+- **Dependencies:** ST-0035
+- **Risk:** Medium
+- **Architectural Impact:** Low
+- **Notes/Evidence:** Added after closing stale Sprint-001 generated PRs on 2026-03-05.
+
+### Story 37
+- **ID:** ST-0037
+- **Title:** Controlled Major Dependency Upgrade Workflow (Zod v4 Pilot)
+- **Description:** Define and implement a safe major-version upgrade workflow, starting with resolving zod v4 incompatibilities in control-plane contracts.
+- **Context:** Direct major bump PR failed CI (`500` instead of `201` in contract test) and needs controlled migration work.
+- **User Value:** Enables secure dependency modernization without destabilizing contracts.
+- **Non-functional Requirements:** Backward compatibility checks, contract correctness, and deterministic CI outcomes.
+- **Implementation Notes:** Create migration branch with compatibility fixes, update schema/validation paths, and add regression coverage for changed behavior.
+- **Test Plan:** Ensure `make ci` passes on upgraded dependency and include explicit regression around failing contract path.
+- **Observability:** Capture migration checkpoints and failure diffs in PR notes.
+- **Rollback Plan:** Pin dependency to previous major and preserve migration notes for retry.
+- **Acceptance Criteria:**
+  - zod major upgrade PR passes `lint-test-build` and contract tests.
+  - Root cause of prior 500 response is documented with test evidence.
+  - Major-upgrade playbook is documented for future dependencies.
+- **Dependencies:** ST-0005, ST-0035
+- **Risk:** High
+- **Architectural Impact:** Medium
+- **Notes/Evidence:** Derived from failed PR `#7` triage on 2026-03-05. Baseline stabilized by repinning control-plane zod to v3 (`^3.25.76`) while controlled v4 migration remains pending.
+
+### Story 38
+- **ID:** ST-0038
+- **Title:** Architecture Reassessment and Gap-Driven Backlog Refresh
+- **Description:** Reassess control-plane/worker/contracts architecture against current implementation and refresh backlog priorities based on drift and debt findings.
+- **Context:** Architecture docs and sprint execution signals need regular reconciliation to keep roadmap grounded.
+- **User Value:** Ensures backlog ordering reflects real technical constraints and platform risks.
+- **Non-functional Requirements:** Traceability, decision logging, and explicit ownership.
+- **Implementation Notes:** Update architecture decision records and map each identified gap to a backlog story with priority/dependency.
+- **Test Plan:** Validate that each architecture gap has a linked story and decision-log reference.
+- **Observability:** Maintain a concise architecture gap matrix with status and linked artifacts.
+- **Rollback Plan:** Revert reassessment updates if conflicts arise and re-run with constrained scope.
+- **Acceptance Criteria:**
+  - Architecture reassessment document is updated with current-state vs target-state deltas.
+  - Decision matrix records resulting priority decisions.
+  - Backlog is reprioritized with clear dependency-safe sprint candidates.
+- **Dependencies:** ST-0035
+- **Risk:** Medium
+- **Architectural Impact:** High
+- **Notes/Evidence:** Added during Sprint-002 kickoff reassessment on 2026-03-05.
 
 ## P1 — Golem-Maker Functional Core
 
