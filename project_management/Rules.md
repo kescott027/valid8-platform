@@ -27,6 +27,18 @@ These rules govern all planning, sprint execution, and backlog changes under `pr
 4. Close sprint only when close checklist is complete.
 5. Move closed sprint file to `project_management/completed_sprints/`.
 
+## Pre-Sprint Technical Debt Gate (Required)
+
+Before a new sprint may begin, all items below must be completed and documented:
+
+- Technical debt check completed with findings, owners, and severity levels.
+- Open PR hygiene check completed (stale/superseded PRs closed or explicitly justified).
+- Failing PR/build checks triaged with either:
+  - immediate fix PR, or
+  - backlog story added with explicit remediation plan and priority.
+- Architecture reassessment completed for any drift introduced by previous sprint.
+- `Current_Sprint.md` must not be updated to a new sprint until this gate is satisfied.
+
 ## Definition of Done (DoD)
 
 A story is done only if all are true:
@@ -44,6 +56,7 @@ A story is done only if all are true:
 - Security checks (auth, secrets, dependency risk, endpoint protection).
 - Performance checks for touched critical paths.
 - Operational checks (health, logging, rollback, observability impact).
+- Technical debt baseline check at sprint start and sprint close.
 
 ## Sprint Close Checklist
 

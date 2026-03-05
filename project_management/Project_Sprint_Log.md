@@ -19,3 +19,20 @@ Append-only sprint ledger. Add one section per sprint and never reset this file.
 - Risk flags:
   - Process risk if sprint close-out PR is not merged before next sprint execution.
   - Policy/linter stories in Sprint-002 carry elevated implementation-complexity risk.
+
+## Sprint-002 (Kickoff)
+
+- Date range: 2026-03-05 to TBD
+- Summary:
+  - Completed pre-sprint debt/failure/PR hygiene review before execution.
+  - Reprioritized sprint selection to include debt gate, PR hygiene automation, architecture reassessment, and major dependency upgrade remediation.
+- Architectural decisions made:
+  - Added sprint-start technical debt gate as mandatory process control.
+  - Adopted controlled major dependency migration workflow over direct auto-merge for failing major bumps.
+- Debt introduced/resolved:
+  - Resolved: stale PR queue from generated Sprint-001 story PRs.
+  - Outstanding: zod v4 compatibility migration tracked as ST-0037.
+- Test delta summary:
+  - Baseline CI remains green on main before Sprint-002 execution.
+- Risk flags:
+  - Migration and governance automation stories can introduce process friction if under-specified.
