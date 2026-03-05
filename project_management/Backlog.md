@@ -246,7 +246,7 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 - **Dependencies:** ST-0010
 - **Risk:** Medium
 - **Architectural Impact:** Medium
-- **Notes/Evidence:** Added after Sprint-001 PR hygiene/failed-check audit on 2026-03-05.
+- **Notes/Evidence:** Implemented governance enforcement in `project_management/scripts/validate_sprint_governance.py`, added debt report artifacts in `project_management/debt_checks/`, wired check into `make ci`, and updated sprint rules to require one implementation PR per sprint on 2026-03-05.
 
 ### Story 36
 - **ID:** ST-0036

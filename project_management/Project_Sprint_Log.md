@@ -36,3 +36,18 @@ Append-only sprint ledger. Add one section per sprint and never reset this file.
   - Baseline CI remains green on main before Sprint-002 execution.
 - Risk flags:
   - Migration and governance automation stories can introduce process friction if under-specified.
+
+## Sprint-002 (Execution Update)
+
+- Date: 2026-03-05
+- Summary:
+  - Implemented ST-0035 governance enforcement with a debt preflight validator and template-backed debt check artifacts.
+  - Enforced one implementation PR per sprint in rules to prevent story-level PR churn.
+- Architectural decisions made:
+  - Sprint PR batching is required for all non-hotfix sprint execution.
+- Debt introduced/resolved:
+  - Resolved: sprint-start debt gate now has executable CI validation.
+- Test delta summary:
+  - `make ci` now runs sprint governance validation before lint/test/build/security.
+- Risk flags:
+  - Governance validator currently assumes one active sprint in `Current_Sprint.md`.

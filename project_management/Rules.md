@@ -32,12 +32,22 @@ These rules govern all planning, sprint execution, and backlog changes under `pr
 Before a new sprint may begin, all items below must be completed and documented:
 
 - Technical debt check completed with findings, owners, and severity levels.
+- Debt preflight artifact exists at `project_management/debt_checks/<Sprint-Number>.md`.
+- Debt preflight artifact date must match the last change date of `Current_Sprint.md`.
 - Open PR hygiene check completed (stale/superseded PRs closed or explicitly justified).
 - Failing PR/build checks triaged with either:
   - immediate fix PR, or
   - backlog story added with explicit remediation plan and priority.
 - Architecture reassessment completed for any drift introduced by previous sprint.
+- Same-day audit log entry includes debt-gate evidence for the active sprint.
 - `Current_Sprint.md` must not be updated to a new sprint until this gate is satisfied.
+
+## Sprint PR Model (Required)
+
+- Use one implementation PR per sprint, not one PR per story.
+- Keep one active sprint branch and accumulate dependency-ordered story commits there.
+- Story-level PRs are only allowed for emergency hotfixes and must be logged with rationale.
+- Next sprint selection starts only after the current sprint PR is merged.
 
 ## Definition of Done (DoD)
 

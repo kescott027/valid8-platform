@@ -34,6 +34,7 @@ These stories apply governance hardening discovered during Sprint-001, resolve a
 ## Acceptance Summary
 - Debt gate is required and evidenced before sprint transitions.
 - PR hygiene is automated/repeatable and stale PR noise is reduced.
+- Sprint work is batched into a single implementation PR for Sprint-002.
 - Observability/path/session/repo stories progress with updated architecture-backed priorities.
 
 ## Definition of Done Checklist

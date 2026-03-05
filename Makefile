@@ -1,8 +1,11 @@
-.PHONY: bootstrap lint test build security security-node security-python ci precommit-install precommit-run dev-api dev-worker clean
+.PHONY: bootstrap governance lint test build security security-node security-python ci precommit-install precommit-run dev-api dev-worker clean
 
 bootstrap:
 	cd apps/control-plane && npm ci
 	cd apps/worker && uv sync
+
+governance:
+	python3 project_management/scripts/validate_sprint_governance.py
 
 lint:
 	cd apps/control-plane && npm run lint
@@ -24,7 +27,7 @@ security-python:
 	cd apps/worker && tmp=$$(mktemp) && uv export --format requirements-txt --no-hashes > $$tmp && uv run pip-audit -r $$tmp && rm -f $$tmp
 	cd apps/worker && uv run bandit -q -r worker -ll -ii
 
-ci: lint test build security
+ci: governance lint test build security
 
 precommit-install:
 	uvx pre-commit install --hook-type pre-commit --hook-type pre-push
