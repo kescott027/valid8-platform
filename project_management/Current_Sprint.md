@@ -1,33 +1,33 @@
 # Current Sprint
 
 ## Sprint Number
-Sprint-001
+Sprint-002
 
 ## Sprint Goal
-Establish a reproducible green baseline and complete the minimum end-to-end run loop required for reliable golem-maker harness cycles.
+Advance from baseline execution to observability, documentation consistency, and the first functional-core story chain for conversation, artifact generation, and policy foundations.
 
 ## Selected Stories
-- ST-0001 Reproducible Bootstrap Across Runtimes
-- ST-0002 Stable CI Pipeline for Lint, Tests, and Build
-- ST-0003 Control Plane Build/Test Separation
-- ST-0004 Worker Test Runtime Reliability
-- ST-0005 Contract Validation Tests for API and Queue Payloads
-- ST-0006 Run Status Synchronization Between Worker and API
-- ST-0007 End-to-End Happy Path Integration Test
-- ST-0008 Failure Mode Coverage for Runner and Plugins
+- ST-0009 Observability Baseline for Core Flows
+- ST-0010 Backlog/Rules Path Consistency Cleanup
+- ST-0011 Conversation Session Service
+- ST-0012 Deterministic Artifact Generator for Seed Docs
+- ST-0013 Backlog Generation Engine
+- ST-0014 Story Quality Linter and Auto-Fix Suggestions
+- ST-0015 Repo Service for Branch/Commit/PR Operations
+- ST-0016 Policy Engine Baseline
 
 ## Rationale for Selection
-These stories remove immediate uncertainty around build/test signal quality and establish the core execution path needed for iterative agent development.
+These stories are the highest dependency-safe sequence after Sprint-001 and represent the minimum set that establishes observability plus first-order product workflow orchestration.
 
 ## Risks
-- Cross-language contract drift between Node API and Python worker.
-- File-backed queue/result behavior may expose race conditions under parallel tests.
-- CI environment differences may hide local assumptions.
+- Orchestration state and repo service complexity may outpace deterministic test design.
+- Story quality automation may create false positives without calibrated lint severity.
+- Cross-tool auth/profile behaviors can still block unattended execution.
 
 ## Acceptance Summary
-- Green bootstrap + CI verification achieved.
-- Run lifecycle observable from enqueue to terminal status.
-- Core success and failure paths tested end-to-end.
+- Observability and path-consistency stories are evidenced and linked.
+- Session/artifact/backlog/linter chain is implemented in dependency order.
+- Repo and policy-engine stories produce deterministic, auditable outputs.
 
 ## Definition of Done Checklist
 - [ ] Acceptance criteria met for all selected stories.
