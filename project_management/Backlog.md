@@ -4,7 +4,7 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 
 ## Backlog Index
 
-- Last updated: 2026-03-03
+- Last updated: 2026-03-05
 - Total story count: 34
 - Highest story ID present: ST-0034
 
@@ -46,7 +46,7 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 - **Dependencies:** None
 - **Risk:** Low
 - **Architectural Impact:** Low
-- **Notes/Evidence:** Pending
+- **Notes/Evidence:** QA/implementation PR pair created via backlog-driven TDD run: tests PR `#10`, implementation PR `#11` on 2026-03-05.
 
 ### Story 2
 - **ID:** ST-0002
@@ -66,7 +66,7 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 - **Dependencies:** ST-0001
 - **Risk:** Low
 - **Architectural Impact:** Low
-- **Notes/Evidence:** Pending
+- **Notes/Evidence:** QA/implementation PR pair created via backlog-driven TDD run: tests PR `#12`, implementation PR `#13` on 2026-03-05.
 
 ### Story 3
 - **ID:** ST-0003
@@ -86,7 +86,7 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 - **Dependencies:** ST-0001
 - **Risk:** Low
 - **Architectural Impact:** Low
-- **Notes/Evidence:** Pending
+- **Notes/Evidence:** QA/implementation PR pair created via backlog-driven TDD run: tests PR `#14`, implementation PR `#15` on 2026-03-05.
 
 ### Story 4
 - **ID:** ST-0004
@@ -106,7 +106,7 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 - **Dependencies:** ST-0001
 - **Risk:** Low
 - **Architectural Impact:** Low
-- **Notes/Evidence:** Pending
+- **Notes/Evidence:** QA/implementation PR pair created via backlog-driven TDD run: tests PR `#16`, implementation PR `#17` on 2026-03-05.
 
 ### Story 5
 - **ID:** ST-0005
@@ -126,7 +126,7 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 - **Dependencies:** ST-0002, ST-0003, ST-0004
 - **Risk:** Medium
 - **Architectural Impact:** Medium
-- **Notes/Evidence:** Implemented baseline contract tests in `apps/control-plane/test/contracts.test.ts` and `apps/worker/tests/test_contracts.py`; schema updated in `packages/contracts/schemas/run_result.schema.json`; verified with `make ci` on 2026-03-03.
+- **Notes/Evidence:** Implemented baseline contract tests in `apps/control-plane/test/contracts.test.ts` and `apps/worker/tests/test_contracts.py`; schema updated in `packages/contracts/schemas/run_result.schema.json`; verified with `make ci` on 2026-03-03. Additional QA/implementation PR pair created via backlog-driven TDD run: tests PR `#18`, implementation PR `#19` on 2026-03-05.
 
 ### Story 6
 - **ID:** ST-0006
@@ -146,7 +146,7 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 - **Dependencies:** ST-0005
 - **Risk:** Medium
 - **Architectural Impact:** High
-- **Notes/Evidence:** Implemented result ingestion and run state sync in `apps/control-plane/src/results/fileResults.ts` and `apps/control-plane/src/app.ts`; worker emits running/final events with timestamps in `apps/worker/worker/runner.py`; verified with `apps/control-plane/test/runs-sync.test.ts` and `make ci` on 2026-03-03.
+- **Notes/Evidence:** Implemented result ingestion and run state sync in `apps/control-plane/src/results/fileResults.ts` and `apps/control-plane/src/app.ts`; worker emits running/final events with timestamps in `apps/worker/worker/runner.py`; verified with `apps/control-plane/test/runs-sync.test.ts` and `make ci` on 2026-03-03. Additional QA/implementation PR pair created via backlog-driven TDD run: tests PR `#20`, implementation PR `#21` on 2026-03-05.
 
 ### Story 7
 - **ID:** ST-0007
@@ -166,7 +166,7 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 - **Dependencies:** ST-0006
 - **Risk:** Medium
 - **Architectural Impact:** Medium
-- **Notes/Evidence:** Happy-path flow is covered through queue emission + run terminal state assertions in `apps/control-plane/test/runs-sync.test.ts`; contract flow validated in `apps/control-plane/test/contracts.test.ts`; verified with `make ci` on 2026-03-03.
+- **Notes/Evidence:** Happy-path flow is covered through queue emission + run terminal state assertions in `apps/control-plane/test/runs-sync.test.ts`; contract flow validated in `apps/control-plane/test/contracts.test.ts`; verified with `make ci` on 2026-03-03. Additional QA/implementation PR pair created via backlog-driven TDD run: tests PR `#22`, implementation PR `#23` on 2026-03-05.
 
 ### Story 8
 - **ID:** ST-0008
@@ -186,7 +186,7 @@ This file is the authoritative backlog for all planned work. Stories are listed 
 - **Dependencies:** ST-0006, ST-0007
 - **Risk:** Medium
 - **Architectural Impact:** Medium
-- **Notes/Evidence:** Failure behavior is covered in `apps/control-plane/test/runs-sync.test.ts` (malformed and failed result events) and `apps/worker/tests/test_runner.py` (unknown step -> failed); verified with `make ci` on 2026-03-03.
+- **Notes/Evidence:** Failure behavior is covered in `apps/control-plane/test/runs-sync.test.ts` (malformed and failed result events) and `apps/worker/tests/test_runner.py` (unknown step -> failed); verified with `make ci` on 2026-03-03. Additional QA/implementation PR pair created via backlog-driven TDD run: tests PR `#24`, implementation PR `#25` on 2026-03-05.
 
 ### Story 9
 - **ID:** ST-0009
